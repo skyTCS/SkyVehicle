@@ -1,4 +1,7 @@
 package com.cc.skyvehicle;
+/**
+ * MQTT操作类
+ */
 
 import android.content.Context;
 import android.os.Bundle;
@@ -35,6 +38,9 @@ public class MqttManager {
         return null;
     }
 
+    /**
+     * 链接MQTT服务器
+     */
     public void connect(){
         try{
             //this.host = host;
@@ -57,6 +63,11 @@ public class MqttManager {
         }
     }
 
+    /**
+     * 订阅主题
+     * @param topic 主题名
+     * @param qos
+     */
     public void subscribe(String topic,int qos){
         if(client != null){
             int[] Qos = {qos};
@@ -70,6 +81,13 @@ public class MqttManager {
         }
     }
 
+    /**
+     * 发布主题
+     * @param topic 主题名
+     * @param msg 要发布的数据
+     * @param isRetained fales
+     * @param qos
+     */
     public void publish(String topic,String msg,boolean isRetained,int qos) {
         try {
             if (client!=null) {
@@ -91,6 +109,9 @@ public class MqttManager {
         }
     }
 
+    /**
+     * 回调函数
+     */
     private MqttCallback mqttCallback = new MqttCallback(){
 
         @Override
